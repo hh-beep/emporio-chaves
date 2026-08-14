@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+// ~ Paleta de Cores:
+/*
+  Preto     ->  #1A1A1A;
+  Amarelo   ->  #FDB905;
+  Laranja   ->  #FB6702;
+  Branco    ->  #F5F5F5;
+  Cinza     ->  #B5B3B4;
+ */
+
+
+
+//  ~ Fontes (Montserrat & Inter)
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+
+//  ~ Tailwind CSS
+@import "tailwindcss";
+@theme {
+  --color-black: #1A1A1A;
+  --color-yellow: #FDB905;
+  --color-orange: #FB6702;
+  --color-white: #F5F5F5;
+  --color-grey: #B5B3B4;
+
+  --font-tittle: 'Montserrat', sans-serif;
+  --font-text: 'Inter', sans-serif;
+}
+
+
+
+
+
+* {
+  transition: 200ms all;
+  outline: 0;
+  cursor: url("./assets/cursor.png"), pointer;
+}
+
+
+
+*, *::before, *::after {  box-sizing: border-box;  }
+
+
+
+body, section, main {
+  overflow-x: hidden;
+}
+

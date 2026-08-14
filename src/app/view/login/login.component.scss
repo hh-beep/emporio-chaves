@@ -1,0 +1,10 @@
+
+.buttonEntrar:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  background-color: #FB6702;
+  color: #fff;
+}
+.inputEntrar:hover, .inputEntrar:active, .inputEntrar:focus {
+  transform: scale(1.025);
+}

@@ -1,0 +1,14 @@
+<nav class="navbar">
+  <h2 class="navbar_Tittle">Empório das Chaves</h2>
+
+
+  <ul class="navbar_List">
+    @for(  link of links; track link.id  ) {
+      <a
+        class="navbar_List__Item"
+        (click)="navigatePath(  link.path  )"
+      >{{  link.text  }}</a>
+    }
+  </ul>
+</nav>
+<span class="block"></span>

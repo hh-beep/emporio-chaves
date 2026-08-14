@@ -1,0 +1,53 @@
+<app-header />
+
+
+<main class="w-[100%] h-[85vh] flex justify-end items-center flex-col bg-black">
+  <section class="flex flex-col justify-between items-center flex-col h-[90%] w-[100%]">
+
+
+    <h3 class="text-white font-tittle text-3xl font-bold">
+      Faça Login no Sistema
+    </h3>
+
+
+
+
+
+  <form
+    class="h-[80%] w-[70%] bg-white rounded-t-xl flex flex-col justify-around items-center"
+    [formGroup]="loginForm"
+    (submit)="entrar()"
+  >
+
+    <label class="flex items-start justify-around flex-col h-[30%] w-[50%] font-tittle">
+      Digite seu email
+
+      <input
+        class="h-[50%] w-[100%] border-[5px] border-solid border-orange rounded-xl px-[0.5rem] inputEntrar"
+        type="email"
+        formControlName="email"
+      >
+    </label>
+
+    <label class="flex items-start justify-around flex-col h-[30%] w-[50%] font-tittle">
+      Digite sua senha
+
+      <input
+        class="h-[50%] w-[100%] border-[5px] border-solid border-orange rounded-xl px-[0.5rem] inputEntrar"
+        type="password"
+        formControlName="password"
+      >
+    </label>
+
+
+
+    <button
+      class="h-[20%] w-[30%] font-bold font-tittle text-2xl rounded-xl border-[5px] border-solid border-orange buttonEntrar"
+      type="submit"
+    >Entrar</button>
+
+
+  </form>
+
+  </section>
+</main>

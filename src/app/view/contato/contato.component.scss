@@ -1,0 +1,8 @@
+.contatoCard:hover {
+  background-color: #FB6702;
+  transform: scale(1.05);
+  cursor: pointer;
+
+  & svg {  fill: #fff;  }
+  & p   {  color: #fff;  }
+}
