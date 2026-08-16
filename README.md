@@ -1,59 +1,87 @@
-# EmporioChaves
+# Emporio das Chaves - Front-End
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.27.
+> 🎓 Projeto acadêmico desenvolvido para a disciplina de **[Nome da Matéria]** no curso de **[Nome do Curso]** - **[Nome da Instituição]**.
 
-## Development server
+Este repositório contém o frontend da aplicação **[Nome do Sistema]**, construído com Angular, Tailwind CSS e SASS. O projeto está em desenvolvimento contínuo ao longo do semestre, evoluindo de um protótipo funcional para uma aplicação completa.
 
-To start a local development server, run:
+## 🛠️ Tecnologias Utilizadas
+
+- **Framework:** Angular 18+ (Standalone Components)
+- **Estilização:** Tailwind CSS + SASS/SCSS
+- **Linguagem:** TypeScript
+- **Gerenciamento de Estado:** Signals / RxJS
+- **Roteamento:** Angular Router (Guards funcionais)
+- **Formulários:** Reactive Forms
+- **Versionamento:** Git
+- **Ambientes:** Angular Environments (dev/prod)
+
+## 📁 Estrutura do Projeto
+
+```text
+src/
+├── app/
+│   ├── models/              # Interfaces e tipos (LoginFormModel.ts)
+│   ├── service/             # Serviços globais (login.service.ts)
+│   ├── view/                # Módulos de visualização por feature
+│   │   ├── contato/         # Página de contato
+│   │   ├── error/           # Páginas de erro dinâmicas (/error/:code)
+│   │   ├── home/            # Landing page pública
+│   │   ├── login/           # Formulário de autenticação
+│   │   ├── shared/          # Componentes UI reutilizáveis entre views
+│   │   └── sistema/         # Área protegida (dashboard após login)
+│   ├── app.component.*      # Shell raiz da aplicação
+│   ├── app.config.ts        # Providers globais (HttpClient, etc.)
+│   └── app.routes.ts        # Configuração central de rotas
+├── assets/                  # Imagens, ícones, arquivos estáticos
+├── environments/            # Variáveis de ambiente (dev/prod)
+├── index.html               # Entry point HTML
+├── main.ts                  # Bootstrap da aplicação
+└── styles.scss              # Estilos globais + imports Tailwind
+```
+
+
+
+
+## ⚙️ Pré-requisitos e Instalação
+Certifique-se de ter instalado:
+Node.js >= 18.x
+Angular CLI >= 18.x
+
 
 ```bash
+# Clone o repositório
+git clone [url-do-repositorio]
+
+# Instale as dependências
+npm install
+
+# Execute em modo de desenvolvimento
 ng serve
+
+# Acesse em http://localhost:4200
+
+
+# Ou, Acesse via o github pages em:
+https://hh-beep.github.io/emporio-chaves/
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 🔐 Credenciais de Teste (Mock)
 
-```bash
-ng generate component component-name
-```
+| Email | Senha | Perfil |
+|-------|-------|--------|
+| admin@texte.com | 123456 | Administrador |
+| user@texte.com | 123456 | Usuário Comum |
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+> ⚠️ Autenticação atual usa `localStorage` como mock. Migração para API REST planejada para próximas entregas.
 
-```bash
-ng generate --help
-```
 
-## Building
 
-To build the project run:
+## 👥 Equipe
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Nome | Papel | GitHub |
+|------|-------|--------|
+| [Henrique F. Pantaleão] | Frontend | [@hh-beep](https://github.com/hh-beep) |
+| [Christian F. Duarte ] | Backend / API | [@chrisdev-eng](https://github.com/chrisdev-eng) |
+| [Daniel Correa] | Banco / API / Testes | [@pentecost-js](https://github.com/pentecost-js) |
