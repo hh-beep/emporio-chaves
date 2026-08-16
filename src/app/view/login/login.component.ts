@@ -17,8 +17,8 @@ import { Router } from '@angular/router';
 
 //  ~ Components
 import {  HeaderComponent  } from '../shared/header/header.component';
-import { loginFormModel } from '../../models/loginFormModel';
-
+import {  loginFormModel  } from '../../models/loginFormModel';
+import {  login  } from "../../service/login.service";
 
 
 
@@ -47,14 +47,35 @@ export class LoginComponent {
 
   //  ~ Nosso formulario
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl('', {  nonNullable: true  }),
+    password: new FormControl('', {  nonNullable: true  }),
   })
+
+
+  emailError = false;
+  passwordError = false;
+
+
 
 
 
 
   entrar() {
-    console.log(  this.loginForm.value.email, this.loginForm.value.password  );
+
+    if (  this.loginForm.valid  ) {
+      const {  email, password  } = this.loginForm.value;
+
+
+      if (  email && password  ) {
+        login(  email, password  )
+          .then(  () => {  this.router.navigate(['sistema'])  })
+      }
+      else {
+        if (  !email && !password  ) {  return this.emailError, this.passwordError = true;  }
+        else if(  !email  ) {  return this.emailError = true;  }
+        else {  return this.passwordError = true;  }
+      }
+    }
+    else {  return alert("Error");  }
   }
 }
