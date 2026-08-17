@@ -1,0 +1,66 @@
+<section class="h-[85vh] w-[100%] bg-black flex items-center justify-around flex-col">
+
+  <h2 class="text-white font-bold font-tittle text-3xl">
+    Crie um novo item!
+  </h2>
+
+
+  <form
+    class="h-[80%] w-[50%] bg-white flex flex-col justify-between items-center py-[1rem] rounded-t-xl"
+    [formGroup]="formNovoItem"
+    (submit)="criarNovoItem()"
+  >
+
+    <label
+      class="w-[80%] h-[20%] flex flex-col justify-between items-start font-tittle"
+    >
+      Digite o nome do Item:
+
+      <input
+        class="w-[90%] h-[60%] border-orange border-[5px] border-solid rounded-md px-[0.5rem]"
+        formControlName="itemName"
+        type="text"
+        formControlName="itemName"
+      >
+    </label>
+
+
+    <label
+      class="w-[80%] h-[20%] flex flex-col justify-between items-start font-tittle"
+    >
+      Crie uma descrição simples ao item
+
+      <input
+        class="w-[90%] h-[60%] border-orange border-[5px] border-solid rounded-md px-[0.5rem]"
+        type="text"
+        formControlName="itemDesc"
+      >
+    </label>
+
+
+
+    <label
+      class="w-[80%] h-[20%] flex flex-col justify-between items-start font-tittle"
+    >
+      Digite a quantidade de Item(s)
+
+      <input
+        class="w-[90%] h-[60%] border-orange border-[5px] border-solid rounded-md px-[0.5rem]"
+        type="number"
+        formControlName="itemQuant"
+      >
+    </label>
+
+
+
+
+    <button
+      class="border-orange border-[5px] border-solid w-[30%] h-[15%] rounded-xl flex items-center justify-around font-bold font-tittle text-2xl text-orange buttonAdd"
+      type="submit"
+    >
+      Criar item!
+    </button>
+
+
+  </form>
+</section>

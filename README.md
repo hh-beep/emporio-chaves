@@ -1,16 +1,15 @@
 # Emporio das Chaves - Front-End
 
-> 🎓 Projeto acadêmico desenvolvido para a disciplina de **[Nome da Matéria]** no curso de **[Nome do Curso]** - **[Nome da Instituição]**.
+> 🎓 Projeto acadêmico desenvolvido para a disciplina de **[Front-End com Framework e Projeto Integrador]** no curso de **[Eng. de Software]** - **[Uniamérica]**.
 
-Este repositório contém o frontend da aplicação **[Nome do Sistema]**, construído com Angular, Tailwind CSS e SASS. O projeto está em desenvolvimento contínuo ao longo do semestre, evoluindo de um protótipo funcional para uma aplicação completa.
+Este repositório contém o frontend da aplicação para à **[Empório das Chaves]**, construído com Angular, Tailwind CSS e SASS. O projeto está em desenvolvimento contínuo ao longo do semestre, evoluindo de um protótipo funcional para uma aplicação completa.
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Framework:** Angular 18+ (Standalone Components)
+- **Framework:** Angular 19+ (Standalone Components)
 - **Estilização:** Tailwind CSS + SASS/SCSS
 - **Linguagem:** TypeScript
-- **Gerenciamento de Estado:** Signals / RxJS
-- **Roteamento:** Angular Router (Guards funcionais)
+- **Roteamento:** Angular Router
 - **Formulários:** Reactive Forms
 - **Versionamento:** Git
 - **Ambientes:** Angular Environments (dev/prod)
@@ -44,8 +43,8 @@ src/
 
 ## ⚙️ Pré-requisitos e Instalação
 Certifique-se de ter instalado:
-Node.js >= 18.x
-Angular CLI >= 18.x
+Node.js >= 20.x
+Angular CLI >= 19.x
 
 
 ```bash

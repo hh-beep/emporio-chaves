@@ -57,6 +57,16 @@ export class LoginComponent {
 
 
 
+  constructor() {
+    if (  localStorage.getItem('loginUser')  ) {
+      this.router.navigate(['sistema']);
+    }
+  }
+
+
+
+
+
 
 
 

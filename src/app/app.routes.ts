@@ -6,6 +6,8 @@ import {  ErrorComponent  } from './view/error/error.component';
 import {  SistemaComponent  } from './view/sistema/sistema.component';
 import {  LoginComponent  } from './view/login/login.component';
 import {  ContatoComponent  } from './view/contato/contato.component';
+import { InicioComponent } from './view/sistema/inicio/inicio.component';
+import { AdicionarItemComponent } from './view/sistema/adicionar-item/adicionar-item.component';
 
 
 export const routes: Routes = [
@@ -41,7 +43,25 @@ export const routes: Routes = [
 
   {
     path: 'sistema',
-    component: SistemaComponent
+    //  ~ Por algum motivo, usar o component aqui pode gerar um erro, pelos componentes serem standalones e essas paradas
+    //  ~ Se der erro, tem que usar o metodo de loadComponent dai
+    //loadComponent: () => import(),
+    component: SistemaComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'inicio',
+        pathMatch: 'full'
+      },
+      {
+        path: 'inicio',
+        component: InicioComponent
+      },
+      {
+        path: 'adicionar-item',
+        component: AdicionarItemComponent
+      }
+    ]
   },
 
 
