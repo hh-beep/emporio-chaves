@@ -1,4 +1,19 @@
-// ~ Paleta de Cores:
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}// ~ Paleta de Cores:
 /*
   Preto     ->  #1A1A1A;
   Amarelo   ->  #FDB905;
@@ -48,4 +63,3 @@
 body, section, main {
   overflow-x: hidden;
 }
-

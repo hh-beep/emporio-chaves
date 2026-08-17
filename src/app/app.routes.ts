@@ -5,11 +5,12 @@ import {  HomeComponent  } from './view/home/home.component';
 import {  ErrorComponent  } from './view/error/error.component';
 import {  LoginComponent  } from './view/login/login.component';
 import {  ContatoComponent  } from './view/contato/contato.component';
-import {  CatalogoComponent  } from './view/catalogo/catalogo.component';
 import {  SistemaComponent  } from './view/sistema/sistema.component';
 import {  InicioComponent  } from './view/sistema/inicio/inicio.component';
 import {  AdicionarItemComponent  } from './view/sistema/adicionar-item/adicionar-item.component';
-import { EditarItemComponent } from './view/sistema/editar-item/editar-item.component';
+import {  EditarItemComponent  } from './view/sistema/editar-item/editar-item.component';
+import { CatalogoComponent } from './view/catalogo/catalogo.component';
+
 
 
 export const routes: Routes = [
@@ -26,10 +27,6 @@ export const routes: Routes = [
 
 
   {
-    path: 'catalogo',
-    component: CatalogoComponent
-  },
-  {
     path: "contato",
     component: ContatoComponent
   },
@@ -39,7 +36,10 @@ export const routes: Routes = [
 
 
 
-
+  {
+    path: 'catalogo',
+    component: CatalogoComponent
+  },
   {
     path: 'login',
     component: LoginComponent
