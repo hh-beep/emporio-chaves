@@ -8,7 +8,7 @@
 
   <a
     class="h-[6rem] w-[30%] border-orange border-solid border-[5px] rounded-xl flex items-center justify-around text-orange text-3xl font-bold buttonAdd"
-    (click)="redirectPath(  '/sistema/adicionar-item'  )"
+    (click)="redirectPath(  'sistema/adicionar-item/'  )"
   >
     Adicionar novo item
   </a>
@@ -54,7 +54,17 @@
 
           <section class="w-[40%] h-[100%] flex justify-around items-end flex-col">
             <button
-              class="h-[50%] w-[80%] border-orange border-[5px] border-solid rounded-md buttonAdd mx-[0.5rem] font-tittle font-bold text-orange"
+              class="h-[40%] w-[70%] border-yellow border-[5px] border-solid rounded-md buttonAdd-Yellow mx-[0.5rem] font-tittle font-bold text-yellow"
+              (click)="redirectPath('sistema/editar-item/' + item.id)"
+            >
+              Editar Item
+            </button>
+
+
+
+
+            <button
+              class="h-[40%] w-[70%] border-orange border-[5px] border-solid rounded-md buttonAdd mx-[0.5rem] font-tittle font-bold text-orange"
               (click)="removeItem(  item.id  )"
             >
               Remover Item
@@ -65,6 +75,11 @@
 
 
       </li>
+    }
+    @empty {
+      <h2 class="text-orange font-tittle font-bold text-3xl">
+        Não possui itens no sistema!!!
+      </h2>
     }
   </ul>
 

@@ -1,11 +1,15 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+
+
 
 
 
 @Component({
   selector: 'app-inicio',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.scss'
 })
@@ -78,13 +82,14 @@ export class InicioComponent {
     localStorage.setItem('itensCatalogo',  JSON.stringify(  this.itemsData  )  );
   }
   removeItem(  itemId: number  ) {
-    console.log(  this.itemsData[  itemId  ]  );
+    //  ~ Filtrar p remover o item igual
+    //  ~ Nn lembrava q essa function existia
+    this.itemsData = this.itemsData.filter(item => item.id !== itemId);
+    localStorage.setItem('itensCatalogo', JSON.stringify(this.itemsData));
   }
 
 
 
 
-  redirectPath(  path: string  ) {
-    this.route.navigate(  [path]  );
-  }
+  redirectPath(  path: string  ) {  this.route.navigate([  path  ])  }
 }
