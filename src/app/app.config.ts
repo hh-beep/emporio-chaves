@@ -27,8 +27,8 @@ export const appConfig: ApplicationConfig = {
         preset: MyCustomTheme,
         options: {
           prefix: 'p',                  // Prefixo das variáveis CSS (--p-primary-color)
-          darkModeSelector: '.p-dark',  // Classe para ativar modo escuro
-          cssLayer: false
+          darkModeSelector: false,  // Classe para ativar modo escuro
+          colorScheme: 'dark'
         }
       }
     }),

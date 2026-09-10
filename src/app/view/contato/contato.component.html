@@ -1,7 +1,7 @@
 <app-header />
 
 
-<main class="bg-black h-[85vh] w-[100%] flex items-center justify-around flex-col">
+<main class=" h-[85vh] w-[100%] flex items-center justify-around flex-col">
 
   <h2 class="font-tittle text-3xl text-white font-bold">
     Entre em contato e nos siga nas Redes Sociais!
@@ -13,7 +13,7 @@
     @for(  item of contatos; track item.id  ) {
       <a
         [href]="item.link"
-        class="contatoCard w-[40%] h-[45%] border-[3px] border-orange border-solid rounded-md flex items-center justify-around flex-col"
+        class="contatoCard w-[40%] h-[45%] border-[1px] border-orange border-solid rounded-md flex items-center justify-around flex-col"
       >
         @if(  item.name == "Instagram"  ) {
           <svg

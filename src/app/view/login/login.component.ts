@@ -1,24 +1,34 @@
 import {
   Component,
-  inject
+  inject,
+  OnInit
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 //  ~ Form imports
 import {
   FormGroup,
   FormControl,
   ReactiveFormsModule,
-  Validators
 } from "@angular/forms";
 
-// import { loginFormModel } from '../../models/loginFormModel';
+//  ~ Route
 import { Router } from '@angular/router';
 
 //  ~ Components
 import {  HeaderComponent  } from '../shared/header/header.component';
-import {  loginFormModel  } from '../../models/loginFormModel';
 import {  login  } from "../../service/login.service";
+
+//  ~ PrimeNG
+import { PasswordModule } from 'primeng/password';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+
+
+
+
 
 
 
@@ -26,7 +36,15 @@ import {  login  } from "../../service/login.service";
   selector: 'app-login',
   imports: [
     HeaderComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    //  ~ PrimeNG
+    PasswordModule,
+    InputGroupModule,
+    InputGroupAddonModule,
+    FloatLabelModule,
+    InputTextModule,
+    ButtonModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -34,7 +52,8 @@ import {  login  } from "../../service/login.service";
 
 
 
-export class LoginComponent {
+
+export class LoginComponent implements OnInit  {
 
 
   //  ~ Variaveis privadas para auths, validações e rotas
@@ -51,19 +70,16 @@ export class LoginComponent {
     password: new FormControl('', {  nonNullable: true  }),
   })
 
-
-  emailError = false;
-  passwordError = false;
-
+  emailError: boolean = false;
+  passwordError: boolean = false;
 
 
-  constructor() {
+
+  ngOnInit() {
     if (  localStorage.getItem('loginUser')  ) {
       this.router.navigate(['sistema']);
     }
   }
-
-
 
 
 

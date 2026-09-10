@@ -1,6 +1,11 @@
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.dev/guide/theming
+
+/*
+ *          OBS:  Não vou mais utilizar o material mdb...
+ *
+ *
 @use '@angular/material' as mat;
 
 html {
@@ -21,6 +26,10 @@ html {
   Branco    ->  #F5F5F5;
   Cinza     ->  #B5B3B4;
  */
+
+
+//  ~ PrimeNG Icons
+@import "primeicons/primeicons.css";
 
 
 
@@ -52,14 +61,21 @@ html {
   outline: 0;
   //  ~ Easter-egg do nosso prefeito
   //cursor: url("./assets/cursor.png"), pointer;
+  scrollbar-width: thin;
+  scrollbar-color: #1a1a1a;
 }
 
 
 
-*, *::before, *::after {  box-sizing: border-box;  }
+
+//*, *::before, *::after {  box-sizing: border-box;  }
 
 
 
-body, section, main {
+/*body, section, main, div, nav {
   overflow-x: hidden;
+}*/
+
+:root {
+  color-scheme: dark !important;  //  Tenho um odio dessas libs q dão uns erros toscos e pra aplicar estilo diferente precisa incluir o !important pq se nn não aplica
 }

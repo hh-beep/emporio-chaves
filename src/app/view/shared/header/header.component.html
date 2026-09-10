@@ -1,14 +1,18 @@
-<nav class="navbar">
-  <h2 class="navbar_Tittle">Empório das Chaves</h2>
+<nav class="h-20 w-[100vw] flex items-center justify-around">
+
+  <!--  Implementação do componente de Menu, A parte de responsividade vai ser criada mais pra frente -->
+  <div class="w-[95%] h-20 top-0 flex items-center justify-around p-dark fixed z-50">
+    <p-menubar
+      [model]="links"
+      class="w-[100%] z-50"
+    >
+      <ng-template #start>
+        <h2 class="text-white font-tittle font-bold text-2xl ml-[1rem] mr-[1.5rem]">
+          <span class="text-orange">Empório</span> das Chaves
+        </h2>
+      </ng-template>
+    </p-menubar>
+  </div>
 
 
-  <ul class="navbar_List">
-    @for(  link of links; track link.id  ) {
-      <a
-        class="navbar_List__Item"
-        (click)="navigatePath(  link.path  )"
-      >{{  link.text  }}</a>
-    }
-  </ul>
 </nav>
-<span class="block"></span>
