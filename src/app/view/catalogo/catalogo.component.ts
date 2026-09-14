@@ -20,4 +20,8 @@ import { HeaderComponent } from '../shared/header/header.component';
 
 export class CatalogoComponent {
   storage = inject(ItemStorageService);
+
+
+
+
 }

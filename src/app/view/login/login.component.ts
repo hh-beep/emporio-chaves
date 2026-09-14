@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 
 //  ~ Components
 import {  HeaderComponent  } from '../shared/header/header.component';
-import {  login  } from "../../service/login.service";
 
 //  ~ PrimeNG
 import { PasswordModule } from 'primeng/password';
@@ -88,6 +87,9 @@ export class LoginComponent implements OnInit  {
 
   entrar() {
 
+
+
+    /*
     if (  this.loginForm.valid  ) {
       const {  email, password  } = this.loginForm.value;
 
@@ -103,5 +105,6 @@ export class LoginComponent implements OnInit  {
       }
     }
     else {  return alert("Error");  }
+    */
   }
 }

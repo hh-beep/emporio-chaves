@@ -10,6 +10,7 @@ import {  InicioComponent  } from './view/sistema/inicio/inicio.component';
 import {  AdicionarItemComponent  } from './view/sistema/adicionar-item/adicionar-item.component';
 import {  EditarItemComponent  } from './view/sistema/editar-item/editar-item.component';
 import { CatalogoComponent } from './view/catalogo/catalogo.component';
+import { ServicosComponent } from './view/servicos/servicos.component';
 
 
 
@@ -30,16 +31,18 @@ export const routes: Routes = [
     path: "contato",
     component: ContatoComponent
   },
-
-
-
-
-
-
   {
     path: 'catalogo',
     component: CatalogoComponent
   },
+  {
+    path: 'servicos',
+    component: ServicosComponent
+  },
+
+
+
+
   {
     path: 'login',
     component: LoginComponent

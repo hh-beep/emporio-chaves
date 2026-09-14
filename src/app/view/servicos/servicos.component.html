@@ -1,1 +1,23 @@
-<p>servicos works!</p>
+<app-header />
+
+<main class="min-h-[85vh] w-[100vw] flex flex-col justify-around items-center">
+
+  <section class="h-24 w-[100%] flex flex-col items-center justify-around">
+    <h2 class="font-tittle font-bold text-3xl text-orange">
+      Nossas Categorias de Serviços
+    </h2>
+  </section>
+
+
+  <!--  Renderização condicional através de Pipes  -->
+  @if (  categorias$ | async; as categorias  ) {
+    @for (  cat of categorias; track cat.id  ) {
+      <li>
+        <h2 class="text-white">{{  cat.nome  }}</h2>
+      </li>
+    }
+  }
+
+
+
+</main>
