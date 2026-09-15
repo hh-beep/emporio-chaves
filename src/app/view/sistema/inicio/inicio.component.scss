@@ -10,3 +10,13 @@
   transform: scale(1.05);
   color: #fff;
 }
+
+
+
+.menuCardItem {
+
+  &:hover {
+    cursor: pointer;
+    background-color: #f4f4f518;
+  }
+}

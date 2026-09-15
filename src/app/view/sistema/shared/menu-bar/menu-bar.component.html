@@ -1,0 +1,47 @@
+<section class="w-[20vw] h-[85vh] fixed left-0 top-[15vh] flex justify-around items-center">
+
+  <p-menu
+    [model]="linkPaths"
+    class="h-[80%] w-[90%]"
+  >
+    <ng-template #start>
+      <h2 class="text-2xl font-tittle font-bold px-6 py-4">
+        <span class="text-3xl text-orange">Emporio</span> System
+      </h2>
+      <p-divider />
+    </ng-template>
+
+
+    <ng-template #end>
+      <p-divider />
+
+      <section class="h-16 w-[100%] flex justify-evenly items-center mb-[0.5rem]">
+        <p-button
+          severity="warn"
+          [outlined]="true"
+          class="rounded-full buttonUser flex justify-around items-center"
+          size="large"
+          (onClick)="navigatePath('/sistema/usuario')"
+        >
+          @if (  userInfos != undefined  ) {
+            @if (  userInfos.perfil != "FUNCIONARIO"  ) {
+              <img src="../../../../../assets/cursor.png"/>
+            }
+            @if (  userInfos.perfil == "FUNCIONARIO"  ) {
+              <i class="pi pi-user" style="font-size: 2rem"></i>
+            }
+
+
+
+          <p>
+            {{  userInfos.nome  }}
+          </p>
+          }
+        </p-button>
+
+      </section>
+    </ng-template>
+
+  </p-menu>
+
+</section>

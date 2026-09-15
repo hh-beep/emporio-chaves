@@ -24,6 +24,7 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { LoginService } from '../../service/login.service';
 
 
 
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit  {
 
   //  ~ Variaveis privadas para auths, validações e rotas
   //  ~ O uso do inject substiitui a nescessidade de chamar o constructor para declarar a variavel...
-  //private authService = inject(  AuthService  );
+  private service: LoginService = inject(  LoginService  );
   private router = inject(  Router  );
 
 
@@ -65,17 +66,18 @@ export class LoginComponent implements OnInit  {
 
   //  ~ Nosso formulario
   loginForm = new FormGroup({
-    email: new FormControl('', {  nonNullable: true  }),
-    password: new FormControl('', {  nonNullable: true  }),
+    login: new FormControl('', {  nonNullable: true  }),
+    senha: new FormControl('', {  nonNullable: true  }),
   })
 
+  credenciaisInvalidas: boolean = false;
   emailError: boolean = false;
   passwordError: boolean = false;
 
 
 
   ngOnInit() {
-    if (  localStorage.getItem('loginUser')  ) {
+    if (  this.service.estaLogado()  ) {
       this.router.navigate(['sistema']);
     }
   }
@@ -83,28 +85,31 @@ export class LoginComponent implements OnInit  {
 
 
 
-
-
   entrar() {
+    this.credenciaisInvalidas = false;
 
+    if (this.loginForm.valid) {
+      const { login, senha } = this.loginForm.value;
 
+      if (login && senha) {
+        this.emailError = false;
+        this.passwordError = false;
 
-    /*
-    if (  this.loginForm.valid  ) {
-      const {  email, password  } = this.loginForm.value;
-
-
-      if (  email && password  ) {
-        login(  email, password  )
-          .then(  () => {  this.router.navigate(['sistema'])  })
+        this.service.login({ login, senha }).subscribe({
+          next: () => this.router.navigate(['/sistema/inicio']),
+          error: err => {
+            console.error(err);
+            this.credenciaisInvalidas = true;
+          }
+        });
       }
       else {
-        if (  !email && !password  ) {  return this.emailError, this.passwordError = true;  }
-        else if(  !email  ) {  return this.emailError = true;  }
-        else {  return this.passwordError = true;  }
+        this.emailError = !login;
+        this.passwordError = !senha;
       }
     }
-    else {  return alert("Error");  }
-    */
+    else {
+      alert("Error");
+    }
   }
 }

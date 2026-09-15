@@ -9,23 +9,19 @@ import { Router } from '@angular/router';
 
 
 
-
 @Component({
-  selector: 'app-adicionar-item',
+  selector: 'app-itens-adicionar',
   imports: [
     ReactiveFormsModule,
   ],
-  templateUrl: './adicionar-item.component.html',
-  styleUrl: './adicionar-item.component.scss'
+  templateUrl: './itens-adicionar.component.html',
+  styleUrl: './itens-adicionar.component.scss'
 })
 
 
 
 
-
-export class AdicionarItemComponent {
-
-
+export class ItensAdicionarComponent {
 
   private router = inject(  Router  );
   storageItems = localStorage.getItem('itensCatalogo');

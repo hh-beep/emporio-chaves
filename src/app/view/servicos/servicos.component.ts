@@ -3,6 +3,9 @@ import { HeaderComponent } from '../shared/header/header.component';
 import { ServicoModel } from '../../models/servicos.models';
 import { ServicoService } from '../../service/servico.service';
 import { AsyncPipe } from '@angular/common';
+import { Observable } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
+import { Router } from '@angular/router';
 
 
 
@@ -10,7 +13,8 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-servicos',
   imports: [
     HeaderComponent,
-    AsyncPipe,        //  ~ Modulo para usar as var de Pipe
+    AsyncPipe,//  ~ Modulo para usar as var de Pipe
+    ButtonModule,
   ],
   templateUrl: './servicos.component.html',
   styleUrl: './servicos.component.scss'
@@ -21,13 +25,24 @@ import { AsyncPipe } from '@angular/common';
 export class ServicosComponent implements OnInit {
 
   private service = inject(  ServicoService  );
-
+  private router = inject(  Router  );
 
   //  ~ Implementação de Pipes do angular.. Eles recebem Observable, e tratam automaticamente o subscribe e o unsubscribe...
-  categorias$ = this.service.pegarCategorias();       //  ~ O $ faz nada na variavel, apenas convenção de variaveis Pipe
+  categorias$: Observable<ServicoModel[]> = this.service.pegarCategorias();       //  ~ O $ faz nada na variavel, apenas convenção de variaveis Pipe
+
+
+
+
+
 
 
   ngOnInit(): void {
     console.log(  this.categorias$  )
+  }
+
+
+
+  navigatePath(  path: string  ) {
+    this.router.navigate(  [path]  );
   }
 }

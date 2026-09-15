@@ -1,0 +1,56 @@
+<main class="min-h-[85vh] w-[100%] flex items-start justify-end">
+
+  <app-menu-bar />
+
+
+
+  <section class="w-[75%] right-0 h-auto flex flex-col items-center justify-around pr-12">
+
+    <section class="w-[100%] height-24 flex items-center justify-start" >
+      <h1 class="text-white font-tittle font-bold text-3xl min-h-[7rem] flex items-center justify-around">
+        Lista de Itens
+      </h1>
+    </section>
+
+
+    <ul class="w-[100%] h-auto flex items-center justify-between flex-wrap">
+      @if (  listaItens$ | async; as itens  ) {
+        @for (  item of itens; track item.id  ) {
+          <li class="flex items-center justify-around flex-col px-8 py-4 bg-black w-[40%] h-64 rounded-xl border-solid border-orange border-1">
+
+            <section class="h-[60%] w-[100%]">
+              <h2 class="text-orange text-2xl font-bold font-tittle">
+                {{  item.nome  }}
+              </h2>
+
+              <p class="text-lg pt-8">
+                {{  item.descricao  }}
+              </p>
+            </section>
+
+
+
+            <div class="flex justify-between items-center w-[100%] h-[30%]">
+              <p-button
+                label="Editar"
+                size="large"
+                severity="warn"
+                [outlined]="true"
+              />
+
+
+
+              <p-button
+                label="Excluir"
+                size="large"
+                severity="danger"
+                [outlined]="true"
+              />
+            </div>
+
+          </li>
+        }
+      }
+    </ul>
+  </section>
+</main>

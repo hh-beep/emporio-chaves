@@ -1,12 +1,17 @@
 // item-storage.service.ts
 import { Injectable, signal } from '@angular/core';
 
+
+
 export interface ItemCatalogo {
   id: number;
   name: string;
   quant: number;
   desc: string;
 }
+
+
+
 
 @Injectable({ providedIn: 'root' })
 export class ItemStorageService {

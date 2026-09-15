@@ -9,7 +9,7 @@ import { Router, RouterOutlet } from '@angular/router';
   selector: 'app-sistema',
   imports: [
     RouterOutlet,
-    HeaderComponent
+    HeaderComponent,
   ],
   templateUrl: './sistema.component.html',
   styleUrl: './sistema.component.scss'

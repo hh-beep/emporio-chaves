@@ -1,7 +1,12 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { ItemStorageService } from '../../service/item-storage.service';
 import { HeaderComponent } from '../shared/header/header.component';
+import { ItensResponseModels } from '../../models/itensResponse.models';
+import { CatalogoService } from '../../service/catalogo.service';
+import { Observable } from 'rxjs';
+
+
 
 
 
@@ -10,7 +15,8 @@ import { HeaderComponent } from '../shared/header/header.component';
   standalone: true,
   imports: [
     CommonModule,
-    HeaderComponent
+    HeaderComponent,
+    AsyncPipe
   ],
   templateUrl: './catalogo.component.html',
   styleUrl: './catalogo.component.scss'
@@ -18,10 +24,19 @@ import { HeaderComponent } from '../shared/header/header.component';
 
 
 
-export class CatalogoComponent {
-  storage = inject(ItemStorageService);
+
+
+export class CatalogoComponent implements OnInit  {
+
+  service = inject(  CatalogoService  );
+  items$: Observable<ItensResponseModels[]> = this.service.listarItens();
 
 
 
+
+
+  ngOnInit(): void {
+    console.log(this.items$)
+  }
 
 }

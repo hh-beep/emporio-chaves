@@ -7,10 +7,13 @@ import {  LoginComponent  } from './view/login/login.component';
 import {  ContatoComponent  } from './view/contato/contato.component';
 import {  SistemaComponent  } from './view/sistema/sistema.component';
 import {  InicioComponent  } from './view/sistema/inicio/inicio.component';
-import {  AdicionarItemComponent  } from './view/sistema/adicionar-item/adicionar-item.component';
 import {  EditarItemComponent  } from './view/sistema/editar-item/editar-item.component';
 import { CatalogoComponent } from './view/catalogo/catalogo.component';
 import { ServicosComponent } from './view/servicos/servicos.component';
+import { UsuarioComponent } from './view/sistema/usuario/usuario.component';
+import { ItensComponent } from './view/sistema/itens/itens.component';
+import { ItensAdicionarComponent } from './view/sistema/itens-adicionar/itens-adicionar.component';
+import { CategoriasComponent } from './view/sistema/categorias/categorias.component';
 
 
 
@@ -51,6 +54,7 @@ export const routes: Routes = [
 
 
 
+
   {
     path: 'sistema',
     //  ~ Por algum motivo, usar o component aqui pode gerar um erro, pelos componentes serem standalones e essas paradas
@@ -67,14 +71,35 @@ export const routes: Routes = [
         path: 'inicio',
         component: InicioComponent
       },
+
+      //  ~ Itens
       {
-        path: 'adicionar-item',
-        component: AdicionarItemComponent
+        path: 'itens',
+        component: ItensComponent
       },
       {
-        path: 'editar-item/:id',
+        path: 'itens/adicionar',
+        component: ItensAdicionarComponent
+      },
+      {
+        path: 'itens/editar/:id',
         component: EditarItemComponent
-      }
+      },
+
+
+      //  ~ Categorias
+      {
+        path: 'categorias',
+        component: CategoriasComponent
+      },
+
+
+
+
+      {
+        path: 'usuario',
+        component: UsuarioComponent
+      },
     ]
   },
 
