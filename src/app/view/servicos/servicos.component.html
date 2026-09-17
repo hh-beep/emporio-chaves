@@ -3,17 +3,17 @@
 <main class="min-h-[85vh] w-[100vw] flex flex-col justify-around items-center">
 
   <section class="h-24 w-[100%] flex flex-col items-center justify-around">
-    <h2 class="font-tittle font-bold text-3xl text-orange">
-      Nossas Categorias de Serviços
+    <h2 class="font-tittle font-bold text-3xl">
+      Nossas <span class="text-orange">Categorias</span> de Serviços
     </h2>
   </section>
 
 
-  <ul class="flex flex-col justify-around items-center w-[100%] h-auto">
+  <ul class="flex flex-col justify-around items-center w-[100%] h-auto pt-12 pb-4">
     <!--  Renderização condicional através de Pipes  -->
     @if (  categorias$ | async; as categorias  ) {
       @for (  cat of categorias; track cat.id  ) {
-        <li class="bg-black px-[1rem] py-[0.5rem] flex justify-evenly items-center rounded-xl border-orange border-solid border-1 w-[75%] h-24">
+        <li class="mb-8 bg-black px-[1rem] py-[0.5rem] flex justify-evenly items-center rounded-xl border-orange border-solid border-1 w-[75%] h-24">
           <div class="flex">
             <!--  Criar mais algumas categorias, e linkar elas aqui pelo nome o icone  -->
             @if (  cat.nome == "Chaves"  ) {  <i class="pi pi-key mr-4" style="font-size: 1.5rem"></i>  }

@@ -1,3 +1,118 @@
-<main>
 
+<main class="min-h-[85vh] w-[100%] flex items-start justify-end">
+
+  <app-menu-bar />
+
+
+
+  <section class="w-[75%] right-0 h-auto flex flex-col items-center justify-around pr-12">
+
+
+    <!-- Header Dinâmico -->
+    <div class="w-full flex items-center justify-between my-8">
+      <h1 class="text-white font-tittle font-bold text-3xl">
+        Minhas Informações
+      </h1>
+
+      <!-- Botão exclusivo para ADMIN/DONO -->
+      @if ((userInfo$ | async)?.perfil === 'DONO') {
+        <p-button
+          label="Gerenciar Usuários"
+          icon="pi pi-users"
+          severity="contrast"
+          [outlined]="true"
+          routerLink="/sistema/usuarios/lista"
+        />
+      }
+    </div>
+
+    <!-- Conteúdo Principal -->
+    @if (userInfo$ | async; as user) {
+
+      <form
+        [formGroup]="formUsuario"
+        submit="salvarAlteracoes()"
+        class="w-[100%] flex flex-col gap-6"
+      >
+
+        <!-- Nome -->
+        <p-floatlabel variant="on" class="w-full">
+          <input pInputText id="nome" formControlName="nome" class="w-[100%]" />
+          <label for="nome" class="">Nome Completo</label>
+        </p-floatlabel>
+
+        <!-- Login -->
+        <p-floatlabel variant="on">
+          <input pInputText id="login" formControlName="login" class="w-full" />
+          <label for="login">Login / Email</label>
+        </p-floatlabel>
+
+        <!-- Senha (Opcional) -->
+        <p-floatlabel variant="on">
+          <input pInputText id="senha" type="password" formControlName="senha" class="w-full" />
+          <label for="senha">Nova Senha (Opcional, Deixe em branco para manter)</label>
+        </p-floatlabel>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+
+
+          <!-- Perfil (Read-only) -->
+          <p-floatlabel variant="on">
+            <p-select
+              id="perfil"
+              formControlName="perfil"
+              [options]="[{label: 'Dono', value: 'DONO'}, {label: 'Funcionário', value: 'FUNCIONARIO'}]"
+              optionLabel="label"
+              optionValue="value"
+              class="w-full flex items-center justify-around h-[3.5rem]"
+              [disabled]="true"
+            />
+            <label for="perfil">Perfil de Acesso</label>
+          </p-floatlabel>
+
+
+        <!-- Status Ativo -->
+          <div class="flex flex-col justify-center h-[3.5rem] px-4 border border-gray-700 rounded-md bg-gray-800">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-300 text-sm">Status da Conta</span>
+              <p-toggleswitch formControlName="ativo" inputId="ativo" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Ações -->
+        <div class="flex justify-between items-center mt-8 pt-6 border-t border-gray-700">
+          <p-button
+            label="Sair do Sistema"
+            severity="danger"
+            [outlined]="true"
+            icon="pi pi-sign-out"
+            (onClick)="logout()"
+          />
+
+          <p-button
+            label="Salvar Alterações"
+            type="submit"
+            [loading]="isLoading"
+            icon="pi pi-check"
+          />
+        </div>
+
+      </form>
+
+    } @else {
+      <!-- Estado de Carregamento ou Erro -->
+      <div class="flex flex-col items-center justify-center h-64 text-gray-400">
+        <i class="pi pi-spin pi-spinner text-4xl mb-4"></i>
+        <p>Carregando perfil...</p>
+      </div>
+    }
+
+  </section>
+
+  <!-- Toast Global para esta tela -->
+  <p-toast position="top-right" />
+  <p-confirmdialog />
 </main>
+

@@ -17,6 +17,10 @@ import { CategoriasComponent } from './view/sistema/categorias/categorias.compon
 
 
 
+
+
+
+
 export const routes: Routes = [
   { //  ~ Homepage
     path: 'home',

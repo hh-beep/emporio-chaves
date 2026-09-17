@@ -1,11 +1,20 @@
-<app-header />
+<main class="min-h-[85vh] w-[100vw]">
 
 
+  <app-header />
 
 
-<!--  Nn vou negar, usei ia aq pra gerar esses cards  -->
-<div class="max-w-6xl mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <section class="h-24 w-[100%] flex flex-col items-center justify-around">
+    <h2 class="font-tittle font-bold text-3xl">
+      Nossas <span class="text-orange">Categorias</span> de Serviços
+    </h2>
+  </section>
+
+
+  <!--  Nn vou negar, usei ia aq pra gerar esses cards  -->
+  <div class="max-w-6xl mx-auto px-4 py-8">
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         @if (  items$ | async; as items  ) {
           @for (item of items; track item.id) {
             <div
@@ -34,3 +43,6 @@
         }
       </div>
     </div>
+
+
+</main>

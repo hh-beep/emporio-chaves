@@ -1,4 +1,5 @@
 import { inject, Injectable } from "@angular/core";
+import { ServicoModel } from "../models/servicos.models";
 import { Observable } from "rxjs";
 import { CategoriasRepository } from "../repository/categorias.repository";
 import { CategoriasResponseModel } from "../models/categoriasResponse.models";

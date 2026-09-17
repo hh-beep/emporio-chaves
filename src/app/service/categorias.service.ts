@@ -7,7 +7,7 @@ import { CategoriasResponseModel } from "../models/categoriasResponse.models";
 
 
 @Injectable({ providedIn: 'root' })
-export class ServicoService {
+export class CategoriasService {
 
   private repository = inject(  CategoriasRepository  );
 

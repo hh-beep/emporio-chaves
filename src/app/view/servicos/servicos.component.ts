@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../shared/header/header.component';
-import { ServicoModel } from '../../models/servicos.models';
 import { ServicoService } from '../../service/servico.service';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
+import { CategoriasResponseModel } from '../../models/categoriasResponse.models';
 
 
 
@@ -28,7 +28,7 @@ export class ServicosComponent implements OnInit {
   private router = inject(  Router  );
 
   //  ~ Implementação de Pipes do angular.. Eles recebem Observable, e tratam automaticamente o subscribe e o unsubscribe...
-  categorias$: Observable<ServicoModel[]> = this.service.pegarCategorias();       //  ~ O $ faz nada na variavel, apenas convenção de variaveis Pipe
+  categorias$: Observable<CategoriasResponseModel[]> = this.service.pegarCategorias();       //  ~ O $ faz nada na variavel, apenas convenção de variaveis Pipe
 
 
 

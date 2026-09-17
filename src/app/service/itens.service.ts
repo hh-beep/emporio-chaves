@@ -17,4 +17,23 @@ export class ItensService {
     return this.repository.listarTodos();
   }
 
+
+  buscarPorId(  idItem: number  ): Observable<ItensResponseModels> {
+    return this.repository.buscarPorId(  idItem  );
+  }
+
+
+  deletarItemPorId(  idItem: number  ) {
+    return this.repository.excluir(  idItem  );
+  }
+
+
+  criarItem(  item: ItensResponseModels  ): Observable<ItensResponseModels> {
+    return this.repository.criar(  item  );
+  }
+
+
+  atualizarItem(  idItem: number, valuesItem: ItensResponseModels  ): Observable<ItensResponseModels> {
+    return this.repository.atualizar(  idItem, valuesItem  );
+  }
 }

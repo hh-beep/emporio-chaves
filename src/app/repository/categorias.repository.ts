@@ -2,12 +2,12 @@ import { Observable } from "rxjs";
 import { inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { enviroment } from "../../enviroments/enviroments";
-import { ServicoModel } from "../models/servicos.models";
+import { CategoriasResponseModel } from "../models/categoriasResponse.models";
 
 
 
 @Injectable({  providedIn: 'root'  })
-export class ServicoRepository {
+export class CategoriasRepository {
 
 
   private backendUrl = `${  enviroment.apiUrl  }/categorias`;
@@ -16,7 +16,7 @@ export class ServicoRepository {
 
   //  ~ No repository, as actions terão os mesmos nomes do back-end...
   //  [GET]
-  listarTodas(): Observable<ServicoModel[]> {
-    return this.http.get<ServicoModel[]>(  this.backendUrl  );
+  listarTodas(): Observable<CategoriasResponseModel[]> {
+    return this.http.get<CategoriasResponseModel[]>(  this.backendUrl  );
   }
 }

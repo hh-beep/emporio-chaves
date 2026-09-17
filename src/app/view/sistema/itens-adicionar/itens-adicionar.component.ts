@@ -1,10 +1,23 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   ReactiveFormsModule,
   FormGroup,
   FormControl
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { MenuBarComponent } from '../shared/menu-bar/menu-bar.component';
+import { SelectModule } from 'primeng/select';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { AsyncPipe } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { CategoriasService } from '../../../service/categorias.service';
+import { ItensService } from '../../../service/itens.service';
+import { map, Observable } from 'rxjs';
+import { CategoriasResponseModel } from '../../../models/categoriasResponse.models';
+import { ItensResponseModels } from '../../../models/itensResponse.models';
 
 
 
@@ -13,61 +26,106 @@ import { Router } from '@angular/router';
   selector: 'app-itens-adicionar',
   imports: [
     ReactiveFormsModule,
+    RouterLink,
+    MenuBarComponent,
+    SelectModule,
+    FloatLabelModule,
+    InputTextModule,
+    AsyncPipe,
+    ButtonModule,
+
+    ToastModule,      //  ~ O alert
   ],
   templateUrl: './itens-adicionar.component.html',
-  styleUrl: './itens-adicionar.component.scss'
+  styleUrl: './itens-adicionar.component.scss',
+  providers: [  MessageService  ]
 })
 
 
 
 
-export class ItensAdicionarComponent {
+export class ItensAdicionarComponent implements OnInit {
 
+  //  ~ Injects Principais para Sistema
   private router = inject(  Router  );
-  storageItems = localStorage.getItem('itensCatalogo');
+  private messageService = inject(  MessageService  );
 
 
-  formNovoItem = new FormGroup({
-    itemName: new FormControl('', {  nonNullable: true  }),
-    itemDesc: new FormControl('', {  nonNullable: true  }),
-    itemQuant: new FormControl(0, {  nonNullable: true  })
+  //  ~ Listas/Services
+  private categoriasService = inject(  CategoriasService  );
+  private itensService = inject(  ItensService  );
+
+
+
+  //  ~ O listaCategorias$ quero que funcione da mesma forma, mas só que recebendo da service um array de Observable do tipo [{  nome: string, id: number, ativo: boolean,}] (que eu tenho uma model chamada CategoriaResponse.models.ts)
+  listaTiposItem = [
+    {  id: '0', name: "Produto", value: "PRODUTO"  },
+    {  id: '1', name: "Servico", value: "SERVICO"  },
+  ]
+
+  listaCategorias$!: Observable<CategoriasResponseModel[]>;
+
+
+  //  ~ Campos de Form
+  formAdicionarItem = new FormGroup({
+    nome: new FormControl('', {  nonNullable: true  }),
+    descricao: new FormControl('', {  nonNullable: true  }),
+    preco: new FormControl(0, {  nonNullable: true  }),
+    tipo: new FormControl('', {  nonNullable: true  }),
+    categoriaId: new FormControl(0, {  nonNullable: true  })
   })
 
 
 
 
 
-  criarNovoItem() {
-    if (  this.storageItems && this.formNovoItem.valid  ) {
-      const {  itemName, itemDesc, itemQuant  } = this.formNovoItem.value;
 
-      if (  itemName && itemDesc && itemQuant  ) {
-        let valorLista: Array<Object> = JSON.parse(  this.storageItems  );
-        let tamanhoLista = Object.values(  valorLista  ).length;
+  ngOnInit(): void {
+    //  ~ Logica para puxar a lista de categorias de itens
+    this.listaCategorias$ = this.categoriasService.pegarCategorias().pipe(
+      map(  categorias => categorias.filter(  c => c.ativo  ))
+    );
 
-
-
-
-        let novoItemLista = {
-          id: tamanhoLista++,
-          name: itemName,
-          desc: itemDesc,
-          quant: itemQuant
-        }
-
-
-        valorLista.push(  novoItemLista  );
-        localStorage.setItem('itensCatalogo', JSON.stringify(  valorLista  ));
-
-
-        this.router.navigate(['sistema/inicio'])
-      }
-      else {
-        alert("Algo de errado nn esta certo")
-      }
-    }
-    else {
-      alert("Valores Invalidos")
-    }
   }
+
+
+
+
+
+
+  criarItem() {
+
+    if (  this.formAdicionarItem.valid  ) {
+
+        const newItemInfos = this.formAdicionarItem.value;
+
+
+        //  ~ o 'as' e nescessario pois garante que os valores do InfoUpdate (que e do tipo FormGroup) se encaixam no modelo...
+        this.itensService.criarItem(  newItemInfos as ItensResponseModels  ).subscribe({
+        next: () => {
+
+
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Sucesso',
+            detail: 'Item atualizado com sucesso'
+          });
+
+          setTimeout(  () => {  this.router.navigate(['/sistema/itens'])  }, 800  );
+        },
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Problema ao atualizar' + err
+          });
+
+
+          setTimeout(  () => {  this.router.navigate(['/sistema/itens'])  }, 800  );
+        }
+      });
+
+      }
+  }
+
 }
