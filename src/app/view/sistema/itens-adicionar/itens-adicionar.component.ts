@@ -46,12 +46,9 @@ import { ItensResponseModels } from '../../../models/itensResponse.models';
 
 export class ItensAdicionarComponent implements OnInit {
 
-  //  ~ Injects Principais para Sistema
+  //  ~ Listas/Services
   private router = inject(  Router  );
   private messageService = inject(  MessageService  );
-
-
-  //  ~ Listas/Services
   private categoriasService = inject(  CategoriasService  );
   private itensService = inject(  ItensService  );
 
@@ -85,7 +82,6 @@ export class ItensAdicionarComponent implements OnInit {
     this.listaCategorias$ = this.categoriasService.pegarCategorias().pipe(
       map(  categorias => categorias.filter(  c => c.ativo  ))
     );
-
   }
 
 
@@ -108,7 +104,7 @@ export class ItensAdicionarComponent implements OnInit {
           this.messageService.add({
             severity: 'success',
             summary: 'Sucesso',
-            detail: 'Item atualizado com sucesso'
+            detail: 'Item criado com sucesso'
           });
 
           setTimeout(  () => {  this.router.navigate(['/sistema/itens'])  }, 800  );
@@ -117,7 +113,7 @@ export class ItensAdicionarComponent implements OnInit {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Problema ao atualizar' + err
+            detail: 'Problema ao criar item...' + err
           });
 
 

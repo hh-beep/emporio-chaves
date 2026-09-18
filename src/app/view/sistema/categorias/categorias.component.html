@@ -4,17 +4,78 @@
 
 
 
-  <section class="w-[75%] right-0 h-auto flex flex-col items-center justify-around">
+  <section class="w-[75%] right-0 h-auto flex flex-col items-center justify-around pr-8">
 
-    <section class="w-[100%] height-24 flex items-center justify-start" >
+    <section class="w-[100%] height-24 flex items-center justify-between" >
       <h1 class="text-white font-tittle font-bold text-3xl min-h-[7rem] flex items-center justify-around">
         Categorias
       </h1>
+
+      <button
+        pButton
+        icon="pi pi-plus"
+        (click)="adicionarCategoria()"
+        [outlined]="true"
+        severity="success"
+        class="h-16 w-64"
+      >
+        Adicionar nova Categoria
+      </button>
     </section>
 
 
 
 
 
+    <ul class="w-[100%] h-auto flex items-center justify-between flex-wrap mb-16">
+      @if (  listaCategorias$ | async; as itens  ) {
+        @for (  item of itens; track item.id  ) {
+          <li class="
+          flex items-center justify-between flex-row
+          px-8 py-4 bg-black w-[100%] h-32 rounded-xl
+              border-solid border-orange border-1 mt-12">
+
+            <section class="h-[100%] w-[60%] flex items-center justify-start">
+              <h2 class="text-orange text-3xl font-bold font-tittle">
+                {{  item.nome  }}
+              </h2>
+
+            </section>
+
+
+
+            <div class="flex justify-between items-center w-[20%] h-[100%]">
+              <p-button
+                label="Editar"
+                size="large"
+                severity="info"
+                [outlined]="true"
+                (onClick)="editarCategoria(  item.id  )"
+              />
+
+
+
+              <p-button
+                label="Excluir"
+                size="large"
+                severity="danger"
+                [outlined]="true"
+                (onClick)="deletarCategoria(  item.id  )"
+              />
+            </div>
+
+          </li>
+        }
+      }
+      @else {
+        <p class="text-white text-xl">Carregando itens...</p>
+      }
+    </ul>
   </section>
+
+
+
+   <!-- Componentes Necessários para Confirmação e Feedback -->
+  <p-confirmdialog></p-confirmdialog>
+  <p-toast></p-toast>
 </main>

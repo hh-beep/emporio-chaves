@@ -13,8 +13,51 @@
     </section>
 
 
+    <form
+      [formGroup]="formCategoria"
+      class="bg-black border-orange border-1 min-h-96 h-auto w-[100%] flex flex-col items-center justify-around rounded-xl py-8"
+      (submit)="editarCategoria()"
+    >
+
+    <section class="w-[100%] h-32 flex items-center justify-between flex-col">
+        <!--  Nome  -->
+        <p-floatlabel variant="on" class="w-[90%]">
+          <input
+            formControlName="nome"
+            pInputText
+            class="w-[100%]"
+            id="editarItensNome"
+          />
+          <label for="editarItensNome">Nome da Categoria:</label>
+        </p-floatlabel>
+
+
+        <div class="flex items-center justify-between w-[90%] ">
+          <div class="flex items-center justify-between h-[3.5rem] w-[50%] px-4 border border-gray-700 rounded-md bg-gray-800">
+            <span class="text-gray-300 text-sm">Status da Conta</span>
+            <p-toggleswitch formControlName="ativo" inputId="ativo" />
+          </div>
+
+
+          <button
+            pButton
+            type="submit"
+            [loading]="isLoading"
+            icon="pi pi-check"
+            class="w-[30%] h-12 font-bold text-xl font-tittle"
+          >
+            Editar Categoria
+          </button>
+        </div>
+      </section>
+    </form>
 
 
 
   </section>
+   <!-- Componentes Necessários para Confirmação e Feedback -->
+  <p-toast></p-toast>
 </main>
+
+
+
