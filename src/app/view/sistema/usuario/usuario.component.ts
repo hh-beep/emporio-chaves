@@ -152,13 +152,35 @@ export class UsuarioComponent implements OnInit  {
   }
 
 
+
+
   logout() {
+
     this.confirmationService.confirm({
-      message: 'Deseja realmente sair?',
-      header: 'Confirmar Logout',
+      message: 'Tem certeza que deseja excluir este item?',
+      header: 'Confirmação de Exclusão',
       icon: 'pi pi-exclamation-triangle',
+      acceptIcon: "none",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
+      acceptButtonStyleClass: "p-button-danger p-button-text",
       accept: () => {
-        this.userService.logout();
+
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Saindo...',
+          detail: 'Encerrando sessão...'
+        });
+
+
+        setTimeout(  () => {  this.userService.logout()  }, 800)
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Cancelado',
+          detail: 'Saida Cancelada...'
+        });
       }
     });
   }

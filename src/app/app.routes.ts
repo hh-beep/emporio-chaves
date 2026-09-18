@@ -14,6 +14,9 @@ import { UsuarioComponent } from './view/sistema/usuario/usuario.component';
 import { ItensComponent } from './view/sistema/itens/itens.component';
 import { ItensAdicionarComponent } from './view/sistema/itens-adicionar/itens-adicionar.component';
 import { CategoriasComponent } from './view/sistema/categorias/categorias.component';
+import { CategoriasAdicionarComponent } from './view/sistema/categorias-adicionar/categorias-adicionar.component';
+import { CategoriasEditarComponent } from './view/sistema/categorias-editar/categorias-editar.component';
+import { UsuarioAdminComponent } from './view/sistema/usuario-admin/usuario-admin.component';
 
 
 
@@ -76,6 +79,9 @@ export const routes: Routes = [
         component: InicioComponent
       },
 
+
+
+
       //  ~ Itens
       {
         path: 'itens',
@@ -96,6 +102,14 @@ export const routes: Routes = [
         path: 'categorias',
         component: CategoriasComponent
       },
+      {
+        path: 'categorias/adicionar',
+        component: CategoriasAdicionarComponent,
+      },
+      {
+        path: 'categorias/editar/:id',
+        component: CategoriasEditarComponent
+      },
 
 
 
@@ -103,6 +117,10 @@ export const routes: Routes = [
       {
         path: 'usuario',
         component: UsuarioComponent
+      },
+      {
+        path: 'usuario/admin',
+        component: UsuarioAdminComponent
       },
     ]
   },

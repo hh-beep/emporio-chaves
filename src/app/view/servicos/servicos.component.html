@@ -17,7 +17,9 @@
           <div class="flex">
             <!--  Criar mais algumas categorias, e linkar elas aqui pelo nome o icone  -->
             @if (  cat.nome == "Chaves"  ) {  <i class="pi pi-key mr-4" style="font-size: 1.5rem"></i>  }
-            <!--  @if (  cat.nome == "Tranca"  ) {}  -->
+            @if (  cat.nome == "Cadeados"  ) {  <i class="pi pi-lock mr-4" style="font-size: 1.5rem"></i>  }
+            @if (  cat.nome == "Acessorios"  ) {  <i class="pi pi-list mr-4" style="font-size: 1.5rem"></i>  }
+            @if (  cat.nome == "Servicos"  ) {  <i class="pi pi-hammer mr-4" style="font-size: 1.5rem"></i>  }
             <h2 class="text-white font-tittle font-bold text-2xl">{{  cat.nome  }}</h2>
           </div>
 
