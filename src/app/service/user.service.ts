@@ -4,6 +4,7 @@ import { UserResponseModel } from "../models/userResponse.model";
 import { Router } from "@angular/router";
 import { catchError, Observable, of, tap } from "rxjs";
 import { UserUpdateModel } from "../models/userUpdate.model";
+import { UserRequestModel } from "../models/userRequest.model";
 
 
 
@@ -29,6 +30,15 @@ export class UserService {
     localStorage.removeItem('loginUser')
     return this.repository.excluir(  idUser  );
   }
+
+  adicionarUser(  userInfos: UserRequestModel  ): Observable<UserResponseModel> {
+    return this.repository.adicionar(  userInfos  );
+  }
+
+  buscarPorId(  idUser: number  ): Observable<UserResponseModel> {
+    return this.repository.buscarPorId(  idUser  );
+  }
+
 
 
 

@@ -25,6 +25,8 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { LoginService } from '../../service/login.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -45,9 +47,12 @@ import { LoginService } from '../../service/login.service';
     FloatLabelModule,
     InputTextModule,
     ButtonModule,
+    ToastModule,      //  ~ O alert
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
+
+  providers: [  MessageService  ]
 })
 
 
@@ -60,6 +65,7 @@ export class LoginComponent implements OnInit  {
   //  ~ O uso do inject substiitui a nescessidade de chamar o constructor para declarar a variavel...
   private service: LoginService = inject(  LoginService  );
   private router = inject(  Router  );
+  private messageService = inject(  MessageService  );
 
 
 
@@ -96,20 +102,43 @@ export class LoginComponent implements OnInit  {
         this.passwordError = false;
 
         this.service.login({ login, senha }).subscribe({
-          next: () => this.router.navigate(['/sistema/inicio']),
+          next: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Sucesso',
+              detail: 'Login feito com sucesso!'
+            });
+
+            setTimeout(  () => {  this.router.navigate(['/sistema/inicio'])  }, 800  );
+          },
           error: err => {
             console.error(err);
             this.credenciaisInvalidas = true;
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Erro ao fazer login: ' + err
+            });
           }
         });
       }
       else {
         this.emailError = !login;
         this.passwordError = !senha;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Credenciais Invalidas',
+        });
       }
     }
     else {
       alert("Error");
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Credenciais Invalidas',
+        });
     }
   }
 }

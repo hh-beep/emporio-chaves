@@ -1,26 +1,26 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { MenuBarComponent } from '../shared/menu-bar/menu-bar.component';
-import { UserService } from '../../../service/user.service';
-import { AsyncPipe, CommonModule } from '@angular/common';
-import { Observable, tap } from 'rxjs';
-import { UserResponseModel } from '../../../models/userResponse.model';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ToastModule } from 'primeng/toast';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
+import { ToastModule } from 'primeng/toast';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { MenuBarComponent } from '../shared/menu-bar/menu-bar.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { UserService } from '../../../service/user.service';
+import { Observable, tap } from 'rxjs';
+import { UserResponseModel } from '../../../models/userResponse.model';
 import { UserUpdateModel } from '../../../models/userUpdate.model';
 
 
 
 
 @Component({
-  selector: 'app-usuario',
+  selector: 'app-usuario-admin-editar',
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -34,24 +34,28 @@ import { UserUpdateModel } from '../../../models/userUpdate.model';
     ConfirmDialogModule,
     MenuBarComponent
   ],
-  templateUrl: './usuario.component.html',
-  styleUrl: './usuario.component.scss',
+  templateUrl: './usuario-admin-editar.component.html',
+  styleUrl: './usuario-admin-editar.component.scss',
   providers: [MessageService, ConfirmationService]
 })
 
 
 
 
-export class UsuarioComponent implements OnInit  {
+
+export class UsuarioAdminEditarComponent implements OnInit  {
+
+
 
   //  ~ Vars inportante de sistema
   private router = inject(  Router  );
+  private rotaInfos = inject(  ActivatedRoute  );
   private userService = inject(  UserService  );
 
 
   //  ~ Injects para os Dialogos
   private messageService = inject(  MessageService  );
-  private confirmationService = inject(  ConfirmationService  );
+  private userId =  this.rotaInfos.snapshot.paramMap.get('id');
 
 
 
@@ -59,7 +63,7 @@ export class UsuarioComponent implements OnInit  {
 
   userInfo$!: Observable<UserResponseModel | null>;    //  ~ Temos que deixar do tipo model | null, pois pode haver error de cache com o cache de user logado atual e talz.
   isLoading = false;
-  userId!: number;
+
 
 
   formUsuario = new FormGroup({
@@ -75,7 +79,9 @@ export class UsuarioComponent implements OnInit  {
 
 
   ngOnInit(): void {
-    this.userInfo$ = this.userService.verificarUsuarioAtual().pipe(
+    if (  this.userId  ) {
+
+    this.userInfo$ = this.userService.buscarPorId(  Number(this.userId)  ).pipe(
       tap(  user => {
         if (user) {
           this.formUsuario.patchValue({
@@ -84,9 +90,6 @@ export class UsuarioComponent implements OnInit  {
             perfil: user.perfil,
             ativo: user.ativo
           });
-
-          //  ~ Guardamos o id p dps ficar mais facil de alteramos;
-          this.userId = user.id;
         }
         else {
           this.messageService.add({
@@ -97,7 +100,11 @@ export class UsuarioComponent implements OnInit  {
         }
       })
     );
+    }
   }
+
+
+
 
 
 
@@ -119,11 +126,9 @@ export class UsuarioComponent implements OnInit  {
         senha: dadosForm.senha && dadosForm.senha.trim() !== '' ? dadosForm.senha : null
       };
 
-      this.userService.atualizarUsuario(this.userId, userUpdate as UserUpdateModel).subscribe({
-        next: (usuarioAtualizado) => {
+      this.userService.atualizarUsuario(  Number(this.userId), userUpdate as UserUpdateModel).subscribe({
+        next: () => {
 
-          //  ~ Atualiza o user local
-          localStorage.setItem('loginUser', JSON.stringify(usuarioAtualizado));
 
 
           this.messageService.add({
@@ -149,39 +154,5 @@ export class UsuarioComponent implements OnInit  {
         complete: () => {  this.isLoading = false  }
       });
     }
-  }
-
-
-
-
-  logout() {
-
-    this.confirmationService.confirm({
-      message: 'Tem certeza que deseja excluir este item?',
-      header: 'Confirmação de Exclusão',
-      icon: 'pi pi-exclamation-triangle',
-      acceptIcon: "none",
-      rejectIcon: "none",
-      rejectButtonStyleClass: "p-button-text",
-      acceptButtonStyleClass: "p-button-danger p-button-text",
-      accept: () => {
-
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Saindo...',
-          detail: 'Encerrando sessão...'
-        });
-
-
-        setTimeout(  () => {  this.userService.logout()  }, 800)
-      },
-      reject: () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Cancelado',
-          detail: 'Saida Cancelada...'
-        });
-      }
-    });
   }
 }

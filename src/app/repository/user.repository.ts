@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { UserResponseModel } from "../models/userResponse.model";
 import { Observable } from "rxjs";
 import { UserUpdateModel } from "../models/userUpdate.model";
+import { UserRequestModel } from "../models/userRequest.model";
 
 
 
@@ -29,5 +30,8 @@ export class UserRepository {
   }
   excluir(  idUser: number  ) {
     return this.http.delete(  `${  this.backendUrl}/${idUser}`  );
+  }
+  adicionar(  userInfos: UserRequestModel  ): Observable<UserResponseModel> {
+    return this.http.post<UserResponseModel>(  `${  this.backendUrl  }`, userInfos  );
   }
 }

@@ -37,12 +37,12 @@ export class InicioComponent {
       icon: 'pi pi-folder',
       path: '/sistema/categorias'
     },
-    {
+    /*{                                     //  ~ Vamo apresentar isso daqui nn
       id: '2',
       tittle: 'Estoques',
       icon: 'pi pi-clipboard',
       path: '/sistema/estoques'
-    },
+    },*/
   ]
 
 
